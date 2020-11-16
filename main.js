@@ -141,7 +141,7 @@ const discordRepresentations = {
 
 convertButton.addEventListener('click', () => {
     const text = inputTextarea.value;
-    let emojiConversion = text;
+    let emojiConversion = text.replaceAll(' ', '   ').toLowerCase();
     const sortedKeys = Object.keys(toEmojiMapping).sort((a, b) => b.length - a.length);
     sortedKeys.forEach((key) => {
         const stringKey = key.toString();
@@ -171,6 +171,8 @@ convertButton.addEventListener('click', () => {
         }
         emojiConversion = emojiReplacement + splitText[splitText.length - 1];
     });
+
+    emojiConversion = emojiConversion.trim();
 
     emojiTextarea.value = emojiConversion;
 
