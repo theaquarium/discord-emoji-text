@@ -1,4 +1,4 @@
-const workerVersion = 1;
+const workerVersion = 2;
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -18,7 +18,6 @@ self.addEventListener('install', (event) => {
                 './favicons/browserconfig.xml',
                 './favicons/android-chrome-512x512.png',
                 './favicons/android-chrome-192x192.png',
-                'https://rsms.me/inter/inter.css',
             ]);
         }),
     );
