@@ -1,4 +1,4 @@
-const workerVersion = 3;
+const workerVersion = 4;
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
