@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Emoji Text</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png?v=oLn6W7BePk">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png?v=oLn6W7BePk">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png?v=oLn6W7BePk">
+    <link rel="manifest" href="favicons/site.webmanifest?v=oLn6W7BePk">
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg?v=oLn6W7BePk" color="#3298dc">
+    <link rel="shortcut icon" href="favicons/favicon.ico?v=oLn6W7BePk">
+    <meta name="msapplication-TileColor" content="#3298dc">
+    <meta name="msapplication-config" content="favicons/browserconfig.xml?v=oLn6W7BePk">
+    <meta name="theme-color" content="#3298dc">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Discord Emoji Text</h1>
+            <h2 class="subtitle">
+                A little app to convert text into emojis
+            </h2>
+            
+            <div class="field">
+                <label class="label">Input Text</label>
+                <div class="control">
+                    <textarea id="input-textarea" class="textarea is-info" placeholder="Enter some text here"></textarea>
+                </div>
+            </div>
+            <button id="convert-button" class="button is-primary my-2 is-outlined is-info is-fullwidth">↓ Convert ↓</button>
+            <div class="field">
+                <label class="label">Emoji Output Text</label>
+                <div class="control">
+                    <textarea id="emoji-textarea" class="textarea" readonly placeholder="Your result appears here"></textarea>
+                </div>
+                <p class="help">Click box to copy text</p>
+            </div>
+            <div class="field">
+                <label class="label">Discord Emoji Output Text</label>
+                <div class="control">
+                    <textarea id="discord-textarea" class="textarea" readonly placeholder="Your result appears here"></textarea>
+                </div>
+                <p class="help">Click box to copy text</p>
+            </div>
+        </div>
+        <div class="block has-text-centered mt-5">
+            Made with ♥ by <a class="has-text-info" href="https://github.com/theaquarium">Peter Vashevko</a>.
+            <br>
+            Check out the code on <a class="has-text-info" href="https://github.com/theaquarium/discord-emoji-text">GitHub</a>.
+            <br>
+            Logo from <a class="has-text-info" href="https://twemoji.twitter.com">Twemoji</a>.
+        </div>
+    </section>
+    <div class="notification is-info" id="notification">
+        <button id="notification-close" class="delete"></button>
+        <span id="notification-message">Copied</span>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
