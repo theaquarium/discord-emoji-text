@@ -1,4 +1,4 @@
-const workerVersion = 2;
+const workerVersion = 3;
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -12,7 +12,7 @@ self.addEventListener('install', (event) => {
                 './favicons/apple-touch-icon.png',
                 './favicons/favicon-32x32.png',
                 './favicons/favicon-16x16.png',
-                './favicons/site.webmanifest',
+                './favicons/manifest.webmanifest',
                 './favicons/safari-pinned-tab.svg',
                 './favicons/favicon.ico',
                 './favicons/browserconfig.xml',

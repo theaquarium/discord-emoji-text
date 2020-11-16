@@ -1,6 +1,7 @@
 {
     "name": "Discord Emoji Text",
-    "short_name": "Discord Emoji Text",
+    "short_name": "Emoji Text",
+    "start_url": "/",
     "icons": [
         {
             "src": "android-chrome-192x192.png?v=oLn6W7BePk",
