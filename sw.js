@@ -1,4 +1,4 @@
-const workerVersion = 4;
+const workerVersion = 5;
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -26,11 +26,13 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((keyList) => {
-            return Promise.all(keyList.map((key) => {
-                if (key !== `cache-v${workerVersion}`) {
-                    return caches.delete(key);
-                }
-            }));
+            return Promise.all(
+                keyList.map((key) => {
+                    if (key !== `cache-v${workerVersion}`) {
+                        return caches.delete(key);
+                    }
+                }),
+            );
         }),
     );
 });
@@ -38,12 +40,17 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request).then((response) => {
-                return caches.open(`cache-v${workerVersion}`).then((cache) => {
-                    cache.put(event.request, response.clone());
-                    return response;
-                });
-            });
+            return (
+                response ||
+                fetch(event.request).then((response) => {
+                    return caches
+                        .open(`cache-v${workerVersion}`)
+                        .then((cache) => {
+                            cache.put(event.request, response.clone());
+                            return response;
+                        });
+                })
+            );
         }),
     );
 });
