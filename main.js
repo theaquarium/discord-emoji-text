@@ -5,11 +5,13 @@ const convertButton = document.querySelector('#convert-button');
 const notification = document.querySelector('#notification');
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js', {scope: './'})
+    navigator.serviceWorker
+        .register('./sw.js', { scope: './' })
         .then((reg) => {
             // registration worked
-            console.log(`Registration succeeded. Scope is ${reg.scope}` );
-        }).catch((error) => {
+            console.log(`Registration succeeded. Scope is ${reg.scope}`);
+        })
+        .catch((error) => {
             // registration failed
             console.log(`Registration failed with ${error}`);
         });
@@ -17,60 +19,62 @@ if ('serviceWorker' in navigator) {
 
 const variationSelector = '️';
 const toEmojiMapping = {
-    a: ['🅰'],
-    b: ['🅱'],
-    c: ['🇨'],
-    d: ['🇩'],
-    e: ['🇪'],
-    f: ['🇫'],
-    g: ['🇬'],
-    h: ['🇭'],
-    i: ['ℹ️', '🇮'],
-    j: ['🇯'],
-    k: ['🇰'],
-    l: ['🇱'],
-    m: ['♏', 'Ⓜ️', '🇲'],
-    n: ['🇳'],
-    o: ['🅾️'],
-    p: ['🅿️'],
-    q: ['🇶'],
-    r: ['🇷'],
-    s: ['🇸'],
-    t: ['🇹'],
-    u: ['⛎', '🇺'],
-    v: ['🇻'],
-    w: ['🇼'],
-    x: ['❎', '❌'],
-    y: ['🇾'],
-    z: ['🇿'],
-    id: ['🆔'],
-    off: ['📴'],
-    vs: ['🆚'],
-    ab: ['🆎'],
-    cl: ['🆑'],
-    sos: ['🆘'],
-    100: ['💯'],
+    'a': ['🅰'],
+    'b': ['🅱'],
+    'c': ['🇨'],
+    'd': ['🇩'],
+    'e': ['🇪'],
+    'f': ['🇫'],
+    'g': ['🇬'],
+    'h': ['🇭'],
+    'i': ['ℹ️', '🇮'],
+    'j': ['🇯'],
+    'k': ['🇰'],
+    'l': ['🇱'],
+    'm': ['♏', 'Ⓜ️', '🇲'],
+    'n': ['🇳'],
+    'o': ['🅾️'],
+    'p': ['🅿️'],
+    'q': ['🇶'],
+    'r': ['🇷'],
+    's': ['🇸'],
+    't': ['🇹'],
+    'u': ['⛎', '🇺'],
+    'v': ['🇻'],
+    'w': ['🇼'],
+    'x': ['❎', '❌'],
+    'y': ['🇾'],
+    'z': ['🇿'],
+    'id': ['🆔'],
+    'off': ['📴'],
+    'vs': ['🆚'],
+    'ab': ['🆎'],
+    'cl': ['🆑'],
+    'sos': ['🆘'],
+    '100': ['💯'],
     '!': ['❗'],
     '!!': ['‼️'],
     '?': ['❓'],
     '!?': ['⁉️'],
-    atm: ['🏧'],
-    ok: ['🆗'],
-    up: ['🆙'],
-    cool: ['🆒'],
-    new: ['🆕'],
-    free: ['🆓'],
-    0: ['0️⃣'],
-    1: ['1️⃣'],
-    2: ['2️⃣'],
-    3: ['3️⃣'],
-    4: ['4️⃣'],
-    5: ['5️⃣'],
-    6: ['6️⃣'],
-    7: ['7️⃣'],
-    8: ['8️⃣'],
-    9: ['9️⃣'],
-    10: ['🔟'],
+    'atm': ['🏧'],
+    'abc': ['🔤'],
+    'ng': ['🆖'],
+    'ok': ['🆗'],
+    'up': ['🆙'],
+    'cool': ['🆒'],
+    'new': ['🆕'],
+    'free': ['🆓'],
+    '0': ['0️⃣'],
+    '1': ['1️⃣'],
+    '2': ['2️⃣'],
+    '3': ['3️⃣'],
+    '4': ['4️⃣'],
+    '5': ['5️⃣'],
+    '6': ['6️⃣'],
+    '7': ['7️⃣'],
+    '8': ['8️⃣'],
+    '9': ['9️⃣'],
+    '10': ['🔟'],
     '*': ['*️⃣'],
     '#': ['#️⃣'],
 };
@@ -119,6 +123,8 @@ const discordRepresentations = {
     '❓': ':question:',
     '⁉️': ':interrobang:',
     '🏧': ':atm:',
+    '🔤': ':abc:',
+    '🆖': ':ng:',
     '🆗': ':ok:',
     '🆙': ':up:',
     '🆒': ':cool:',
@@ -136,13 +142,15 @@ const discordRepresentations = {
     '9️⃣': ':nine:',
     '🔟': ':ten:',
     '*️⃣': ':asterisk:',
-    '#️⃣': ':hash:'
+    '#️⃣': ':hash:',
 };
 
 convertButton.addEventListener('click', () => {
     const text = inputTextarea.value;
     let emojiConversion = text.replaceAll(' ', '   ').toLowerCase();
-    const sortedKeys = Object.keys(toEmojiMapping).sort((a, b) => b.length - a.length);
+    const sortedKeys = Object.keys(toEmojiMapping).sort(
+        (a, b) => b.length - a.length,
+    );
     sortedKeys.forEach((key) => {
         const stringKey = key.toString();
         const possibleMappings = toEmojiMapping[stringKey];
@@ -157,9 +165,13 @@ convertButton.addEventListener('click', () => {
                     if (isGood) {
                         option = possibleMappings[0];
                     } else {
-                        option = possibleMappings[
-                            Math.floor(Math.random() * (possibleMappings.length - 1)) + 1
-                        ];
+                        option =
+                            possibleMappings[
+                                Math.floor(
+                                    Math.random() *
+                                        (possibleMappings.length - 1),
+                                ) + 1
+                            ];
                     }
                 } else {
                     option = possibleMappings[0];
@@ -178,7 +190,10 @@ convertButton.addEventListener('click', () => {
 
     let discordConversion = emojiConversion;
     Object.keys(discordRepresentations).forEach((key) => {
-        discordConversion = discordConversion.replaceAll(key, discordRepresentations[key]);
+        discordConversion = discordConversion.replaceAll(
+            key,
+            discordRepresentations[key],
+        );
     });
 
     discordTextarea.value = discordConversion;
@@ -196,7 +211,9 @@ function hideNotification() {
 }
 
 function showNotification(notificationText) {
-    document.querySelector('#notification-message').innerHTML = `${notificationText}`;
+    document.querySelector(
+        '#notification-message',
+    ).innerHTML = `${notificationText}`;
     notification.style.visibility = 'visible';
     notification.style.right = '1rem';
     clearTimeout(hideNotificationTimeout);
@@ -220,13 +237,13 @@ document.querySelector('#notification-close').addEventListener('click', () => {
 
 // https://stackoverflow.com/a/30810322/8005366
 function fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement("textarea");
+    const textArea = document.createElement('textarea');
     textArea.value = text;
 
     // Avoid scrolling to bottom
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
 
     document.body.appendChild(textArea);
     textArea.focus();
@@ -247,9 +264,12 @@ function copyTextToClipboard(text) {
         fallbackCopyTextToClipboard(text);
         return;
     }
-    navigator.clipboard.writeText(text).then(() => {
-        console.log('Async: Copying to clipboard was successful!');
-    }, (err) => {
-        console.error('Async: Could not copy text: ', err);
-    });
+    navigator.clipboard.writeText(text).then(
+        () => {
+            console.log('Async: Copying to clipboard was successful!');
+        },
+        (err) => {
+            console.error('Async: Could not copy text: ', err);
+        },
+    );
 }
