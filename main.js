@@ -95,7 +95,7 @@ const discordRepresentations = {
     '🇱': ':regional_indicator_l:',
     '♏': ':scorpius:',
     'Ⓜ️': ':m:',
-    '🇲': ':regional_indicator_m',
+    '🇲': ':regional_indicator_m:',
     '🇳': ':regional_indicator_n:',
     '🅾️': ':o2:',
     '🅿️': ':parking:',
@@ -145,7 +145,7 @@ const discordRepresentations = {
     '#️⃣': ':hash:',
 };
 
-convertButton.addEventListener('click', () => {
+const convert = () => {
     const text = inputTextarea.value;
     let emojiConversion = text.replaceAll(' ', '   ').toLowerCase();
     const sortedKeys = Object.keys(toEmojiMapping).sort(
@@ -197,8 +197,52 @@ convertButton.addEventListener('click', () => {
     });
 
     discordTextarea.value = discordConversion;
+};
+
+let isShiftPressed = false;
+
+convertButton.addEventListener('click', convert);
+
+window.addEventListener('mousemove', (event) => {
+    if (event.shiftKey) {
+        isShiftPressed = true;
+    } else {
+        isShiftPressed = false;
+    }
 });
 
+window.addEventListener('mouseup', (event) => {
+    if (event.shiftKey) {
+        isShiftPressed = true;
+    } else {
+        isShiftPressed = false;
+    }
+});
+
+window.addEventListener('mousedown', (event) => {
+    if (event.shiftKey) {
+        isShiftPressed = true;
+    } else {
+        isShiftPressed = false;
+    }
+});
+
+inputTextarea.addEventListener('keydown', (event) => {
+    if (event.code === 'ShiftLeft') {
+        isShiftPressed = true;
+    } else if (event.code === 'Enter') {
+        if (!isShiftPressed) {
+            event.preventDefault();
+            convert();
+        }
+    }
+});
+
+inputTextarea.addEventListener('keyup', (event) => {
+    if (event.code === 'ShiftLeft') {
+        isShiftPressed = false;
+    }
+});
 let hideNotificationTimeout;
 let hideNotificationVisibilityTimeout;
 
